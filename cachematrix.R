@@ -9,38 +9,38 @@
 ## invertible.
 
 makeCacheMatrix <- function(x = matrix()) {
-  inverseMatrix <- NULL
-  
-  set <- function(y) {
-    x <<- y
-    inverseMatrix <<- NULL
-  }
-  
-  get <- function() x
-  
-  setInverseMatrix <- function(invMatr) inverseMatrix <<- invMatr
-  
-  getInverseMatrix <- function() inverseMatrix
-  
-## IMHO commented version of 'getInverseMtrix' function is much 'better'
-## from OOP principles.
-## And we do not need 'setInverseMatrix' function in this case.
-##
-## For futher information you may follow the link:
-##  https://class.coursera.org/rprog-006/forum/thread?thread_id=675
-##
-## getInverseMatrix <- function(...){
-##    if(is.null(inverseMatrix)){
-##      inverseMatrix <<- solve(x, ...)
-##    } else {
-##      message("getting cached data")
-##    }
-##    inverseMatrix
-##  }
-  
-  list(set = set, get = get,
-       setInverseMatrix = setInverseMatrix,
-       getInverseMatrix = getInverseMatrix)
+    inverseMatrix <- NULL
+    
+    set <- function(y) {
+        x <<- y
+        inverseMatrix <<- NULL
+    }
+    
+    get <- function() x
+    
+    setInverseMatrix <- function(invMatr) inverseMatrix <<- invMatr
+    
+    getInverseMatrix <- function() inverseMatrix
+    
+    ## IMHO commented version of 'getInverseMtrix' function is much 'better'
+    ## from OOP principles.
+    ## And we do not need 'setInverseMatrix' function in this case.
+    ##
+    ## For futher information you may follow the link:
+    ##  https://class.coursera.org/rprog-006/forum/thread?thread_id=675
+    ##
+    ## getInverseMatrix <- function(...){
+    ##    if(is.null(inverseMatrix)){
+    ##      inverseMatrix <<- solve(x, ...)
+    ##    } else {
+    ##      message("getting cached data")
+    ##    }
+    ##    inverseMatrix
+    ##  }
+    
+    list(set = set, get = get,
+         setInverseMatrix = setInverseMatrix,
+         getInverseMatrix = getInverseMatrix)
 }
 
 
@@ -52,13 +52,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ## the value in the cache via the `setInverseMatrix` function.
 
 cacheSolve <- function(x, ...) {
-  ## Return a matrix that is the inverse of 'x'
-  m <- x$getInverseMatrix()
-  if(is.null(m)){
-    m <- solve(x$get(), ...)
-    x$setInverseMatrix(m)
-  } else {
-    message("getting cached data")
-  }
-  m
+    ## Return a matrix that is the inverse of 'x'
+    m <- x$getInverseMatrix()
+    if(is.null(m)){
+        m <- solve(x$get(), ...)
+        x$setInverseMatrix(m)
+    } else {
+        message("getting cached data")
+    }
+    m
 }
